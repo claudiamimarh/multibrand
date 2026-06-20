@@ -13,27 +13,52 @@ public class PriceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * foreign key de la cadena del grupo (1 = ZARA)
+     */
     @Column(name = "BRAND_ID")
     private Long brandId;
 
+    /**
+     * Fecha inicio para el rango de fechas en el que aplica el precio tarifa indicado
+     */
     @Column(name = "START_DATE")
     private LocalDateTime startDate;
 
+    /**
+     * Fecha fin para el rango de fechas en el que aplica el precio tarifa indicado
+     */
     @Column(name = "END_DATE")
     private LocalDateTime endDate;
 
+    /**
+     * Identificador de la tarifa de precios aplicable.
+     */
     @Column(name = "PRICE_LIST")
     private Integer priceList;
 
+    /**
+     *  Identificador código de producto.
+     */
     @Column(name = "PRODUCT_ID")
     private Long productId;
 
+    /**
+     * Desambiguador de aplicación de precios.
+     * Si dos tarifas coinciden en un rago de fechas se aplica la de mayor prioridad (mayor valor numérico).
+     */
     @Column(name = "PRIORITY")
     private Integer priority;
 
+    /**
+     * Precio final de venta
+     */
     @Column(name = "PRICE")
     private BigDecimal price;
 
+    /**
+     * Código iso de la moneda
+     */
     @Column(name = "CURR")
     private String currency;
 

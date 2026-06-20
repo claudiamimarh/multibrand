@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * DTO inmutable que expone exactamente los campos solicitados en la salida de la prueba.
+ * DTO inmutable que expone exactamente los campos solicitados como salida.
  */
 public record PriceResponse(
         Long productId,

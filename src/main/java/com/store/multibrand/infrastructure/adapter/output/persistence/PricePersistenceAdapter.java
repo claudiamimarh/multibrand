@@ -1,6 +1,5 @@
 package com.store.multibrand.infrastructure.adapter.output.persistence;
 
-
 import com.store.multibrand.domain.model.Price;
 import com.store.multibrand.domain.port.output.PriceRepositoryPort;
 import org.springframework.stereotype.Repository;

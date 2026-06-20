@@ -19,7 +19,7 @@ class PriceControllerIntegrationTest {
     @Autowired
     private PriceController priceController;
 
-    private final String BASE_URL = "/api/v1/prices?productId=35455&brandId=1&applicationDate=";
+    private static final String BASE_URL = "/api/v1/prices?productId=35455&brandId=1&applicationDate=";
 
     /**
      * Este método se ejecuta antes de cada test.
