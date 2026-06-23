@@ -3,6 +3,7 @@ package com.store.multibrand.infrastructure.adapter.input.rest;
 import com.store.multibrand.domain.port.input.GetApplicablePriceUseCase;
 import com.store.multibrand.infrastructure.adapter.input.rest.dto.PriceResponse;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,6 @@ public class PriceController {
                         price.price()
                 ))
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }

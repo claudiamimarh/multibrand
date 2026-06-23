@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -18,20 +19,19 @@ public class PricePersistenceAdapter implements PriceRepositoryPort {
     }
 
     @Override
-    public List<Price> findPricesByDate(Long brandId, Long productId, LocalDateTime applicationDate) {
-        List<PriceEntity> entities = repository.findPricesByDate(brandId, productId, applicationDate);
+    public Optional<Price> findPricesByDate(Long brandId, Long productId, LocalDateTime applicationDate) {
+        Optional<PriceEntity> priceEntity = repository.findFirstByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(brandId, productId, applicationDate, applicationDate);
 
-        return entities.stream()
+        return priceEntity
                 .map(entity -> new Price(
-                        entity.getBrandId(),
-                        entity.getStartDate(),
-                        entity.getEndDate(),
-                        entity.getPriceList(),
-                        entity.getProductId(),
-                        entity.getPriority(),
-                        entity.getPrice(),
-                        entity.getCurrency()
-                ))
-                .collect(Collectors.toList());
+                entity.getBrandId(),
+                entity.getStartDate(),
+                entity.getEndDate(),
+                entity.getPriceList(),
+                entity.getProductId(),
+                entity.getPriority(),
+                entity.getPrice(),
+                entity.getCurrency()
+        ));
     }
 }

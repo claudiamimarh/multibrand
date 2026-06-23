@@ -5,8 +5,6 @@ import com.store.multibrand.domain.port.input.GetApplicablePriceUseCase;
 import com.store.multibrand.domain.port.output.PriceRepositoryPort;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 
 public class GetApplicablePriceUseCaseImpl implements GetApplicablePriceUseCase {
@@ -19,9 +17,6 @@ public class GetApplicablePriceUseCaseImpl implements GetApplicablePriceUseCase 
 
     @Override
     public Optional<Price> execute(Long brandId, Long productId, LocalDateTime applicationDate) {
-        List<Price> prices = priceRepositoryPort.findPricesByDate(brandId, productId, applicationDate);
-
-        return prices.stream()
-                .max(Comparator.comparingInt(Price::priority));
+        return priceRepositoryPort.findPricesByDate(brandId, productId, applicationDate);
     }
 }
